@@ -1,0 +1,12 @@
+package com.cloud.migration.repository;
+
+
+import com.cloud.migration.model.Workload;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
+
+@Repository
+public interface WorkloadRepo extends CrudRepository<Workload, UUID> {
+}
