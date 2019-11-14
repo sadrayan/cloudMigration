@@ -3,6 +3,8 @@ package com.cloud.migration.controller;
 import com.cloud.migration.exception.EntityNotFoundException;
 import com.cloud.migration.model.Credential;
 import com.cloud.migration.repository.CredentialRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import java.util.*;
 
 @RestController
 public class CredentialController {
+
+    Logger logger = LoggerFactory.getLogger(CredentialController.class);
 
     private CredentialRepo credentialRepo;
     private static final String SALT = "my-salt-text";
