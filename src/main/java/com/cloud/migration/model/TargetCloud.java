@@ -17,8 +17,8 @@ public class TargetCloud implements Serializable {
     @Enumerated(EnumType.STRING)
     private CloudType cloudType;
 
-    private Credentials credentials;
-    private Workload workload;
+//    private Credential credential;
+//    private Workload workload;
 
     public UUID getId() {
         return id;
@@ -36,19 +36,19 @@ public class TargetCloud implements Serializable {
         this.cloudType = cloudType;
     }
 
-    public Credentials getCredentials() {
-        return credentials;
-    }
-
-    public void setCredentials(Credentials credentials) {
-        this.credentials = credentials;
-    }
-
-    public Workload getWorkload() {
-        return workload;
-    }
-
-    public void setWorkload(Workload workload) {
-        this.workload = workload;
-    }
+//    public Credential getCredential() {
+//        return credential;
+//    }
+//
+//    public void setCredential(Credential credential) {
+//        this.credential = credential;
+//    }
+//
+//    public Workload getWorkload() {
+//        return workload;
+//    }
+//
+//    public void setWorkload(Workload workload) {
+//        this.workload = workload;
+//    }
 }

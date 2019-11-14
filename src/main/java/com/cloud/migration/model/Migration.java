@@ -20,7 +20,7 @@ public class Migration implements Serializable {
     @PrimaryKey
     private UUID id;
     private List<String> mountPoints;
-    private Workload workload;
+//    private Workload workload;
 
     @Enumerated(EnumType.STRING)
     private MigrationState migrationState;
@@ -42,13 +42,13 @@ public class Migration implements Serializable {
         this.mountPoints = mountPoints;
     }
 
-    public Workload getWorkload() {
-        return workload;
-    }
-
-    public void setWorkload(Workload workload) {
-        this.workload = workload;
-    }
+//    public Workload getWorkload() {
+//        return workload;
+//    }
+//
+//    public void setWorkload(Workload workload) {
+//        this.workload = workload;
+//    }
 
     public MigrationState getMigrationState() {
         return migrationState;

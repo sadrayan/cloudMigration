@@ -17,8 +17,8 @@ public class Workload implements Serializable {
     @PrimaryKey
     private UUID id;
     private @NonNull String ip;
-    private @NonNull Credentials credentials;
-    private @NonNull List<Volume> volumes;
+//    private @NonNull Credential credential;
+//    private @NonNull List<Volume> volumes;
 
     public UUID getId() {
         return id;
@@ -36,19 +36,19 @@ public class Workload implements Serializable {
         this.ip = ip;
     }
 
-    public Credentials getCredentials() {
-        return credentials;
-    }
-
-    public void setCredentials(Credentials credentials) {
-        this.credentials = credentials;
-    }
-
-    public List<Volume> getVolumes() {
-        return volumes;
-    }
-
-    public void setVolumes(List<Volume> volumes) {
-        this.volumes = volumes;
-    }
+//    public Credential getCredential() {
+//        return credential;
+//    }
+//
+//    public void setCredential(Credential credential) {
+//        this.credential = credential;
+//    }
+//
+//    public List<Volume> getVolumes() {
+//        return volumes;
+//    }
+//
+//    public void setVolumes(List<Volume> volumes) {
+//        this.volumes = volumes;
+//    }
 }

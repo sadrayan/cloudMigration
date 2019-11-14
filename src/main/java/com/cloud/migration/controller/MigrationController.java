@@ -24,7 +24,7 @@ public class MigrationController {
         this.migrationRepo = migrationRepo;
     }
 
-    @GetMapping("/target")
+    @GetMapping("/migrate")
     public List<Migration> retrieveAllMigration() {
         Iterable<Migration> result = migrationRepo.findAll();
         List<Migration> migrationList = new ArrayList<>();
@@ -32,7 +32,7 @@ public class MigrationController {
         return migrationList;
     }
 
-    @GetMapping("/target/{id}")
+    @GetMapping("/migrate/{id}")
     public Migration retrieveMigration(@PathVariable UUID id) {
         Optional<Migration> migration = migrationRepo.findById(id);
 
@@ -42,7 +42,7 @@ public class MigrationController {
         return migration.get();
     }
 
-    @PostMapping("/target")
+    @PostMapping("/migrate")
     public ResponseEntity<Object> createMigration(@RequestBody Migration migration) {
         Migration savedMigration = migrationRepo.save(migration);
 
@@ -53,7 +53,7 @@ public class MigrationController {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("/target/{id}")
+    @PutMapping("/migrate/{id}")
     public ResponseEntity<Object> updateMigration(@RequestBody Migration migration, @PathVariable UUID id) {
         Optional<Migration> migrationOptional = migrationRepo.findById(id);
 
@@ -65,7 +65,7 @@ public class MigrationController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/target/{id}")
+    @DeleteMapping("/migrate/{id}")
     public ResponseEntity<Object> deleteMigration(@PathVariable UUID id) {
         migrationRepo.deleteById(id);
         return ResponseEntity.ok().build();
