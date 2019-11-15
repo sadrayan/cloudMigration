@@ -6,7 +6,7 @@ https://medium.com/@aamine/spring-data-for-cassandra-a-complete-example-3c6f7f39
 How to Install Cassandra on Ubuntu 18.04
 https://www.hostinger.com/tutorials/set-up-and-install-cassandra-ubuntu/
 
-And run these cql statements
+And run these cql statements from test resource (db_script.cql)
 
 [source]
 ----
@@ -14,113 +14,50 @@ And run these cql statements
 CREATE KEYSPACE IF NOT EXISTS mykeyspace WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};
 
 use mykeyspace;
-
-CREATE TABLE IF NOT EXISTS  sample.hotels (
-    id UUID,
-    name varchar,
-    address varchar,
-    state varchar,
-    zip varchar,
-    primary key((id), name)
-);
-
-CREATE TABLE IF NOT EXISTS  sample.hotels_by_letter (
-    first_letter varchar,
-    hotel_name varchar,
-    hotel_id UUID,
-    address varchar,
-    state varchar,
-    zip varchar,
-    primary key((first_letter), hotel_name, hotel_id)
-);
-
-
-CREATE MATERIALIZED VIEW sample.hotels_by_state AS
-    SELECT id, name, address, state, zip FROM hotels
-        WHERE state IS NOT NULL AND id IS NOT NULL AND name IS NOT NULL
-    PRIMARY KEY ((state), name, id)
-    WITH CLUSTERING ORDER BY (name DESC)
 ----
 
 = Run the App
 
 [source]
 ----
-./gradlew clean bootRun
+clean spring-boot:run
 ----
 
 = Populate Data
+Postman collection included in test resource
 
-Assuming that https://httpie.org/[httpie] is installed in your machine
-
-[source]
-----
-http POST 'http://localhost:8080/hotels' state="WA" name="A Sample Hotel" zip="00001" address="Address 1"
-http POST 'http://localhost:8080/hotels' state="WA" name="B Sample Hotel" zip="00002" address="Address 2"
-http POST 'http://localhost:8080/hotels' state="OR" name="C Sample Hotel" zip="00003" address="Address 3"
-----
-
-OR with CURL
+With CURL for running migration
 
 [source]
 ----
-curl -X "POST" "http://localhost:8080/hotels" \
+curl -X "POST" "http://localhost:8080/migrate/{migration_uuid}/run" \
      -H "Accept: application/json" \
      -H "Content-Type: application/json" \
-     -d $'{
-  "name": "A Sample Hotel",
-  "address": "Address 1",
-  "state": "WA",
-  "zip": "00001"
-}'
+     -d $'{}'
 
-curl -X "POST" "http://localhost:8080/hotels" \
-     -H "Accept: application/json" \
-     -H "Content-Type: application/json" \
-     -d $'{
-  "name": "B Sample Hotel",
-  "address": "Address 2",
-  "state": "WA",
-  "zip": "00002"
-}'
-
-curl -X "POST" "http://localhost:8080/hotels" \
-     -H "Accept: application/json" \
-     -H "Content-Type: application/json" \
-     -d $'{
-  "name": "C Sample Hotel",
-  "address": "Address 3",
-  "state": "OR",
-  "zip": "10001"
-}'
-----
 
 = Query Data
 
-Get hotels with names starting with "A" - internally makes use of a table with duplicated content,
-maintained with first letter as the partition key
+Curl
 
 [source]
 ----
-http GET 'http://localhost:8080/hotels/startingwith/A'
-----
-
-OR with Curl
-
-[source]
-----
-curl -X "GET" "http://localhost:8080/hotels/startingwith/A" \
+curl -X "GET" "http://localhost:8080/credential" \
      -H "Accept: application/json"
-----
 
-Get Hotels from State - makes use of a materialized view
-[source]
-----
-http GET 'http://localhost:8080/hotels/fromstate/OR'
-----
-
-[source]
-----
-curl -X "GET" "http://localhost:8080/hotels/fromstate/OR" \
+curl -X "GET" "http://localhost:8080/volume" \
      -H "Accept: application/json"
+
+curl -X "GET" "http://localhost:8080/workload" \
+     -H "Accept: application/json"
+
+curl -X "GET" "http://localhost:8080/target" \
+     -H "Accept: application/json"
+
+curl -X "GET" "http://localhost:8080/migrate" \
+     -H "Accept: application/json"
+
+curl -X "GET" "http://localhost:8080/migrate/{migrate_uuid}/status" \
+     -H "Accept: application/json"
+
 ----
