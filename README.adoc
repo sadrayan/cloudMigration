@@ -1,43 +1,19 @@
-How to Install Cassandra on Ubuntu 18.04
-https://www.hostinger.com/tutorials/set-up-and-install-cassandra-ubuntu/
 Cassandra Bootstrap
 https://medium.com/@aamine/spring-data-for-cassandra-a-complete-example-3c6f7f39fef9
 
 = Install a local Cassandra
 
-The simplest way to install Cassandra is via the excellent https://github.com/pcmanus/ccm[ccm] tool.
-
-If you are using a Mac-OSX, you may have to add more loopback interfaces this way:
-
-[source]
-----
-sudo ifconfig lo0 alias 127.0.0.2 up
-sudo ifconfig lo0 alias 127.0.0.3 up
-----
-
-And bring up a 3 node Cassandra 3.9 based cluster:
-
-[source]
-----
-ccm create test -v 3.9 -n 3 -s --vnodes
-----
-
-
-Connect to one of the nodes:
-
-[source]
-----
-ccm node1 cqlsh
-----
+How to Install Cassandra on Ubuntu 18.04
+https://www.hostinger.com/tutorials/set-up-and-install-cassandra-ubuntu/
 
 And run these cql statements
 
 [source]
 ----
 
-CREATE KEYSPACE IF NOT EXISTS sample WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};
+CREATE KEYSPACE IF NOT EXISTS mykeyspace WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};
 
-use sample;
+use mykeyspace;
 
 CREATE TABLE IF NOT EXISTS  sample.hotels (
     id UUID,
