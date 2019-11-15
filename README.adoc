@@ -1,6 +1,3 @@
-Cassandra Bootstrap
-https://medium.com/@aamine/spring-data-for-cassandra-a-complete-example-3c6f7f39fef9
-
 = Install a local Cassandra
 
 How to Install Cassandra on Ubuntu 18.04
