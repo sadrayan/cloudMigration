@@ -1,9 +1,12 @@
 package com.cloud.migration.model;
 
+import com.datastax.driver.core.DataType;
 import lombok.NonNull;
+import org.springframework.data.cassandra.core.mapping.CassandraType;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
@@ -16,9 +19,16 @@ public class Workload implements Serializable {
 
     @PrimaryKey
     private UUID id;
+
+    @Column(name = "ip", updatable = false, nullable = false)
     private @NonNull String ip;
-//    private @NonNull Credential credential;
-//    private @NonNull List<Volume> volumes;
+
+    //    @CassandraType(type = DataType.Name.UDT, userTypeName = "Credential")
+
+    private @NonNull UUID credential;
+    private @NonNull List<UUID> volumes;
+
+    public Workload() {}
 
     public UUID getId() {
         return id;
@@ -36,19 +46,29 @@ public class Workload implements Serializable {
         this.ip = ip;
     }
 
-//    public Credential getCredential() {
-//        return credential;
-//    }
-//
-//    public void setCredential(Credential credential) {
-//        this.credential = credential;
-//    }
-//
-//    public List<Volume> getVolumes() {
-//        return volumes;
-//    }
-//
-//    public void setVolumes(List<Volume> volumes) {
-//        this.volumes = volumes;
-//    }
+    public UUID getCredential() {
+        return credential;
+    }
+
+    public void setCredential(UUID credential) {
+        this.credential = credential;
+    }
+
+    public List<UUID> getVolumes() {
+        return volumes;
+    }
+
+    public void setVolumes(List<UUID> volumes) {
+        this.volumes = volumes;
+    }
+
+    @Override
+    public String toString() {
+        return "Workload{" +
+                "id=" + id +
+                ", ip='" + ip + '\'' +
+                ", credential=" + credential +
+                ", volumes=" + volumes +
+                '}';
+    }
 }

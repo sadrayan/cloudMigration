@@ -1,6 +1,5 @@
 package com.cloud.migration.model;
 
-import com.cloud.migration.enums.CloudType;
 import com.cloud.migration.enums.MigrationState;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
@@ -20,11 +19,10 @@ public class Migration implements Serializable {
     @PrimaryKey
     private UUID id;
     private List<String> mountPoints;
-//    private Workload workload;
-
+    private UUID sourceWorkload;
+    private UUID targetCloud;
     @Enumerated(EnumType.STRING)
     private MigrationState migrationState;
-
 
     public UUID getId() {
         return id;
@@ -42,13 +40,21 @@ public class Migration implements Serializable {
         this.mountPoints = mountPoints;
     }
 
-//    public Workload getWorkload() {
-//        return workload;
-//    }
-//
-//    public void setWorkload(Workload workload) {
-//        this.workload = workload;
-//    }
+    public UUID getSourceWorkload() {
+        return sourceWorkload;
+    }
+
+    public void setSourceWorkload(UUID sourceWorkload) {
+        this.sourceWorkload = sourceWorkload;
+    }
+
+    public UUID getTargetCloud() {
+        return targetCloud;
+    }
+
+    public void setTargetCloud(UUID targetCloud) {
+        this.targetCloud = targetCloud;
+    }
 
     public MigrationState getMigrationState() {
         return migrationState;
@@ -56,5 +62,16 @@ public class Migration implements Serializable {
 
     public void setMigrationState(MigrationState migrationState) {
         this.migrationState = migrationState;
+    }
+
+    @Override
+    public String toString() {
+        return "Migration{" +
+                "id=" + id +
+                ", mountPoints=" + mountPoints +
+                ", sourceWorkload=" + sourceWorkload +
+                ", targetCloud=" + targetCloud +
+                ", migrationState=" + migrationState +
+                '}';
     }
 }

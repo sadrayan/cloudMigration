@@ -1,19 +1,16 @@
 package com.cloud.migration.model;
 
+import lombok.NonNull;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import java.io.Serializable;
 import java.util.UUID;
-//@AllArgsConstructor
-//@Getter @Setter
-@Table ( "Credential" )
+
+@Table( "Credential" )
 public class Credential implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,5 +53,14 @@ public class Credential implements Serializable {
 
     public void setDomain(String domain) {
         this.domain = domain;
+    }
+
+    @Override
+    public String toString() {
+        return "Credential{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", domain='" + domain + '\'' +
+                '}';
     }
 }

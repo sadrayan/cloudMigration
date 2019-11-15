@@ -1,5 +1,6 @@
 package com.cloud.migration.controller;
 
+import com.cloud.migration.enums.CloudType;
 import com.cloud.migration.exception.TargetCloudNotFoundException;
 import com.cloud.migration.model.TargetCloud;
 import com.cloud.migration.repository.TargetCloudRepo;
@@ -44,6 +45,7 @@ public class TargetCloudController {
 
     @PostMapping("/target")
     public ResponseEntity<Object> createTargetCloud(@RequestBody TargetCloud targetCloud) {
+        targetCloud.setId(UUID.randomUUID());
         TargetCloud savedTargetCloud = targetCloudRepo.save(targetCloud);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()

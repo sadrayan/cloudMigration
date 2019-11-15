@@ -1,5 +1,7 @@
 How to Install Cassandra on Ubuntu 18.04
 https://www.hostinger.com/tutorials/set-up-and-install-cassandra-ubuntu/
+Cassandra Bootstrap
+https://medium.com/@aamine/spring-data-for-cassandra-a-complete-example-3c6f7f39fef9
 
 = Install a local Cassandra
 
