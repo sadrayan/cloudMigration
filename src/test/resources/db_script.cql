@@ -1,3 +1,9 @@
+
+
+CREATE KEYSPACE IF NOT EXISTS mykeyspace WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};
+
+use mykeyspace;
+
 drop type if exists Credential;
 CREATE type IF NOT EXISTS Credential
 (

@@ -1,0 +1,259 @@
+{
+	"variables": [],
+	"info": {
+		"name": "cloudMigration",
+		"_postman_id": "e9091099-f0d2-3055-9f47-8671303984bd",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "credential",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "credential {id}",
+			"request": {
+				"url": "http://localhost:8080/credential/4ac8c388-b152-4b03-ba7b-4303f0219c91",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "credential {id} put",
+			"request": {
+				"url": "http://localhost:8080/credential/4ac8c388-b152-4b03-ba7b-4303f0219c91",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"sadra\",\n    \"password\": \"verysecret11000000000000000000000000\",\n    \"domain\": \"yorkU\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "credential",
+			"request": {
+				"url": "http://localhost:8080/credential",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"hashed\",\n    \"password\": \"verysecret19991\",\n    \"domain\": \"yorkU\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "volume",
+			"request": {
+				"url": "http://localhost:8080/volume",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"mountPoint\": \"e:/\",\n        \"size\": 22222\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "target",
+			"request": {
+				"url": "http://localhost:8080/target",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"cloudType\": \"AWS\",\n        \"credentials\": [\"9180097d-f4ac-4826-b01e-0aa1e65b5035\"],\n        \"targetWorkload\" : \"51d9abbe-a41f-40e8-98ae-8aa6899b0d3a\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "migrate post",
+			"request": {
+				"url": "http://localhost:8080/migrate",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"mountPoints\": [\"c:/\" , \"d:/\"],\n        \"sourceWorkload\": \"9180097d-f4ac-4826-b01e-0aa1e65b5035\",\n        \"targetCloud\" : \"51d9abbe-a41f-40e8-98ae-8aa6899b0d3a\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "migrate RUN",
+			"request": {
+				"url": "http://localhost:8080/migrate/4fac022d-1980-4d4c-b4ec-a8eb2449e9a1/run",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"cloudType\": \"AWS\",\n        \"credentials\": [\"9180097d-f4ac-4826-b01e-0aa1e65b5035\"],\n        \"targetWorkload\" : \"51d9abbe-a41f-40e8-98ae-8aa6899b0d3a\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "workload",
+			"request": {
+				"url": "http://localhost:8080/workload",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"credential\": \"9180097d-f4ac-4826-b01e-0aa1e65b5035\",\n        \"ip\": \"127.0.0.1\",\n        \"volumes\" : [\"1e72a740-072b-11ea-936f-2d7fb58ffde5\", \"8fc3762f-fb41-48b0-b796-7561622829c3\"]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "workload copy",
+			"request": {
+				"url": "http://localhost:8080/workload/51d9abbe-a41f-40e8-98ae-8aa6899b0d3a",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"credential\": \"9180097d-f4ac-4826-b01e-0aa1e65b5035\",\n    \"ip\": \"127.0.0.1\",\n    \"volumes\" : [\"1e72a740-072b-11ea-936f-2d7fb58ffde5\", \"8fc3762f-fb41-48b0-b796-7561622829c3\"]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "credential",
+			"request": {
+				"url": "http://localhost:8080/credential",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "volume",
+			"request": {
+				"url": "http://localhost:8080/volume",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "targetCloud",
+			"request": {
+				"url": "http://localhost:8080/target/a67eb282-b4c4-41ed-ba12-7bc3ea7ab18e",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "migration",
+			"request": {
+				"url": "http://localhost:8080/migrate",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "migration status",
+			"request": {
+				"url": "http://localhost:8080/migrate/d39721a9-6813-4b67-a219-0169847e4bde/status",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "workload",
+			"request": {
+				"url": "http://localhost:8080/workload",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
